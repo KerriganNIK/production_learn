@@ -1,4 +1,4 @@
-import { classNames } from './classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 
 describe('classNames', () => {
     test('returns the base class when no modifiers or additional classes are provided', () => {

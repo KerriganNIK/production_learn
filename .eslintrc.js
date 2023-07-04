@@ -41,7 +41,7 @@ module.exports = {
         'max-len': 'off',
         'react/button-has-type': 'off',
         'react/jsx-no-bind': 'off',
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAttribute: ['data-testid', 'to'] }],
     },
     globals: {
         __IS_DEV__: true,
