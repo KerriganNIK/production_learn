@@ -15,7 +15,7 @@ describe('Sidebar', () => {
 
     test('toggles collapse state when button is clicked', () => {
         const { container, getByText } = render(<Sidebar />);
-        const toggleButton = getByText('toggle');
+        const toggleButton = getByText('Переключить');
         const sidebarElement = container.firstChild;
 
         fireEvent.click(toggleButton);
