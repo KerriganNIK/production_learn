@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { Button, ThemeButton } from './Button';
+import { Button, ButtonTheme } from './Button';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('Button', () => {
@@ -15,7 +15,7 @@ describe('Button', () => {
     });
 
     test('applies theme class based on prop', () => {
-        const { container } = render(<Button theme={ThemeButton.CLEAR}>Button</Button>);
+        const { container } = render(<Button theme={ButtonTheme.CLEAR}>Button</Button>);
         expect(container.firstChild).toHaveClass('clear');
     });
 
