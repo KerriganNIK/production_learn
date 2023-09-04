@@ -1,41 +1,27 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { Sidebar } from './Sidebar';
+import { fireEvent, screen } from '@testing-library/react';
+import { Sidebar } from 'widgets/Sidebar/ui/Sidebar/Sidebar';
+import { componentRender } from 'shared/lib/tests/componentRender/componentRender';
 
-describe('Sidebar', () => {
-    test('renders without errors', () => {
-        render(<Sidebar />);
+describe('Sidebar Component', () => {
+    it('renders without crashing', () => {
+        const { container } = componentRender(<Sidebar />);
+        expect(container).toBeInTheDocument();
     });
 
-    test('initially not collapsed', () => {
-        const { container } = render(<Sidebar />);
-        const sidebarElement = container.firstChild;
-        expect(sidebarElement).not.toHaveClass('collapsed');
-    });
-
-    test('toggles collapse state when button is clicked', () => {
-        const { container, getByText } = render(<Sidebar />);
-        const toggleButton = getByText('Переключить');
-        const sidebarElement = container.firstChild;
+    it('should toggle collapsed state when button is clicked', () => {
+        const { getByText } = componentRender(<Sidebar />);
+        const toggleButton = getByText(/</);
 
         fireEvent.click(toggleButton);
-        expect(sidebarElement).toHaveClass('collapsed');
+        expect(toggleButton.textContent).toBe('>');
 
         fireEvent.click(toggleButton);
-        expect(sidebarElement).not.toHaveClass('collapsed');
+        expect(toggleButton.textContent).toBe('<');
     });
 
-    test('passes className prop to the root element', () => {
-        const customClassName = 'custom-class';
-        const { container } = render(<Sidebar className={customClassName} />);
-        const sidebarElement = container.firstChild;
-        expect(sidebarElement).toHaveClass('Sidebar');
-        expect(sidebarElement).toHaveClass(customClassName);
-    });
-
-    test('renders ThemeSwitcher component', () => {
-        const { getByTestId } = render(<Sidebar />);
-        const themeSwitcherComponent = getByTestId('theme-switcher');
-        expect(themeSwitcherComponent).toBeInTheDocument();
+    it('should render main and about links', () => {
+        const { getByText } = componentRender(<Sidebar />);
+        expect(getByText('Главная')).toBeInTheDocument();
+        expect(getByText('О сайте')).toBeInTheDocument();
     });
 });
