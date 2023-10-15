@@ -89,6 +89,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.5.1",
     "concurrently": "^8.2.0",
     "core-js": "^3.30.1",
     "deelay": "^2.0.0",
